@@ -85,61 +85,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     header {
-        background-color: var(--color-beige); 
+        background-color: var(--color-beige);
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: var(--color-darkslategray); 
+        color: var(--color-darkslategray);
         font-weight: bold;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    header .logo { /* Adicionado para estilizar "Ritmo Enem" no cabeçalho */
-        font-size: 24px;
-        font-weight: bold;
-        color: var(--color-darkcyan); 
-        font-family: var(--font-inter); 
+    .logo {
+        font-family: var(--font-limelight);
+        font-size: 32px;
+        color: var(--color-darkcyan);
     }
 
-    header nav {
+    nav {
         display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
     }
 
-    header nav a {
-        margin: 0 15px;
-        color: var(--color-darkslategray); 
+    nav a {
+        color: var(--color-darkslategray);
         text-decoration: none;
-        font-family: var(--font-inter);
+        font-family: var(--font-kodchasan);
+        font-weight: 600;
         transition: color 0.3s ease;
     }
 
-    header nav a:hover {
-        color: var(--color-darkcyan); /* Hover nos links */
+    nav a:hover,
+    nav a.active {
+        color: var(--color-darkcyan);
     }
 
-    /* Título principal da página */
-    .main-page-title {
+    .page-header {
+        max-width: 1100px;
+        margin: 40px auto 0;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .page-header h1 {
         font-family: var(--font-limelight);
         font-size: 48px;
         color: var(--color-darkslateblue);
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
 
-    /* Container principal do formulário (form-box) */
+    .page-header p {
+        font-family: var(--font-klee-one);
+        font-size: 18px;
+        color: var(--color-darkslategray);
+        max-width: 760px;
+        margin: 0 auto;
+    }
+
     .form-box {
-        max-width: 600px; 
-        margin: auto; 
-        background-color: var(--color-linen); 
-        padding: 40px; 
-        border-radius: 30px; 
-        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-        font-family: var(--font-kodchasan); 
+        max-width: 620px;
+        margin: 40px auto 0;
+        background-color: var(--color-linen);
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        font-family: var(--font-kodchasan);
         position: relative;
-        padding-top: 60px; 
-        padding-right: 40px; 
     }
 
     /* Título do formulário */
@@ -263,6 +275,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         object-fit: cover;
     }
 
+    footer {
+        background-color: var(--color-darkcyan);
+        color: white;
+        text-align: center;
+        padding: 20px 10px;
+        font-family: var(--font-inter);
+        margin-top: 80px;
+    }
+
     /* Media Queries para responsividade */
     @media (max-width: 768px) {
         .form-box {
@@ -304,13 +325,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav>
         <a href="home.php">HOME</a>
         <a href="cronograma.php">CRONOGRAMA</a>
-        <a href="#sobre.php">SOBRE NÓS</a>
-        <a href="cadastro.php">CADASTRO</a>
+        <a href="sobre.php">SOBRE NÓS</a>
+        <a href="cadastro.php" class="active">CADASTRO</a>
         <a href="#">FÓRUM ONLINE</a>
     </nav>
 </header>
 
-<h1 class="main-page-title">Crie Sua Conta Estrelar</h1>
+<section class="page-header">
+    <h1>Crie Sua Conta Estrelar</h1>
+    <p>Cadastre-se para começar a organizar seus estudos com o Ritmo Enem.</p>
+</section>
 
 <div class="form-box">
     <div class="profile-pic-container">
@@ -366,5 +390,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   });
 </script>
+<footer>
+    <p>Siga-nos: @ritmoEnem no Instagram e Twitter</p>
+</footer>
 </body>
 </html>
