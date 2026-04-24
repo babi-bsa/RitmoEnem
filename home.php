@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
     <title>Login - Ritmo Enem</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Kodchasan:wght@400;600&family=Klee+One&family=Limelight&family=Linden+Hill&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
             --color-beige: #f3f3e0;
@@ -60,114 +61,143 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         body {
             font-family: var(--font-inter);
-            background-color: var(--color-beige); /* Fundo bege claro */
-            color: var(--color-darkslategray); /* Cor padrão do texto */
+            background-color: var(--color-beige);
+            color: var(--color-darkslategray);
+            min-height: 100vh;
         }
 
         header {
-            background-color: var(--color-beige); /* Fundo do cabeçalho como o cronograma.php */
+            background-color: var(--color-beige);
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--color-darkslategray); /* Cor do texto no cabeçalho */
+            color: var(--color-darkslategray);
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adicionando sombra para consistência */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        header nav a {
-            margin: 0 15px;
-            color: var(--color-darkslategray); /* Cor dos links do cabeçalho */
-            text-decoration: none;
-            font-family: var(--font-inter);
-            transition: color 0.3s ease; /* Adicionado transição para hover */
+        .logo {
+            font-family: var(--font-limelight);
+            font-size: 32px;
+            color: var(--color-darkcyan);
         }
 
-        header nav a:hover {
-            color: var(--color-darkcyan); /* Cor de acento no hover */
-        }
-
-        .container {
+        nav {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
             align-items: center;
-            height: calc(100vh - 60px); /* Ajustado para considerar a altura do header */
-            padding: 20px;
         }
 
-        .left-box {
-            flex: 1;
-            max-width: 500px;
-            padding: 20px;
+        nav a {
+            color: var(--color-darkslategray);
+            text-decoration: none;
+            font-family: var(--font-kodchasan);
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        .left-box h1 {
+        nav a:hover,
+        nav a.active {
+            color: var(--color-darkcyan);
+        }
+
+        .page-header {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
             font-family: var(--font-limelight);
             font-size: 48px;
             color: var(--color-darkslateblue);
             margin-bottom: 10px;
         }
 
-        .left-box p.tagline {
-            font-family: var(--font-linden-hill);
-            font-size: 18px;
-            color: var(--color-darkslateblue); /* Mantido darkslateblue para tagline */
-            margin-bottom: 20px;
-        }
-
-        .left-box p.desc {
+        .page-header p {
             font-family: var(--font-klee-one);
             font-size: 18px;
-            color: var(--color-darkslategray); /* Alterado para darkslategray para consistência */
-            margin-bottom: 40px;
+            color: var(--color-darkslategray);
+            max-width: 760px;
+            margin: 0 auto;
         }
 
-        .socials {
+        .main-content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px 40px;
             display: flex;
-            gap: 10px;
-            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            align-items: flex-start;
         }
 
-        .socials img {
-            width: 32px;
-            height: 32px;
-        }
-
-        .socials span {
-            font-size: 14px;
-            color: var(--color-darkslategray); /* Alterado para darkslategray para consistência */
-        }
-
-        .login-box {
+        .welcome-panel {
             flex: 1;
-            max-width: 450px;
-            background-color: var(--color-linen);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
+            min-width: 300px;
+            max-width: 520px;
+            padding: 40px 0 0 0;
             font-family: var(--font-kodchasan);
         }
 
-        .login-box h2 {
+        .welcome-panel h1 {
+            font-family: var(--font-limelight);
+            font-size: 48px;
+            color: var(--color-darkslateblue);
+            margin-bottom: 20px;
+        }
+
+        .welcome-panel p {
+            font-family: var(--font-klee-one);
+            font-size: 18px;
+            color: var(--color-darkslategray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .login-card {
+            background-color: var(--color-linen);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 420px;
+            font-family: var(--font-kodchasan);
+        }
+
+        .login-card {
+            background-color: var(--color-linen);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 420px;
+            font-family: var(--font-kodchasan);
+        }
+
+        .login-card h2 {
             font-size: 36px;
             color: var(--color-darkslategray);
             margin-bottom: 30px;
+            text-align: center;
         }
 
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
             width: 100%;
             padding: 12px 15px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             font-size: 16px;
-            font-family: var(--font-inter); /* Usar Inter para inputs */
-            color: var(--color-darkslategray); /* Cor do texto dos inputs */
+            font-family: var(--font-inter);
+            color: var(--color-darkslategray);
         }
 
-        .login-box input[type="submit"] {
+        .login-card input[type="submit"] {
             width: 100%;
             background-color: var(--color-darkcyan);
             border: none;
@@ -180,87 +210,99 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             transition: background 0.3s;
         }
 
-        .login-box input[type="submit"]:hover {
+        .login-card input[type="submit"]:hover {
             background-color: #007a91;
         }
 
-        .login-box a {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--color-darkslategray);
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease; /* Adicionado transição para hover */
+        .login-card .link-row {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        .login-box a:hover {
-            color: var(--color-darkcyan); /* Cor de acento no hover */
+        .login-card a {
+            color: var(--color-darkslategray);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .login-card a:hover {
+            color: var(--color-darkcyan);
+        }
+
+        footer {
+            background-color: var(--color-darkcyan);
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            font-family: var(--font-inter);
+            margin-top: 80px;
         }
 
         @media (max-width: 900px) {
-            .container {
-                flex-direction: column;
-                padding: 40px 20px;
-                height: auto; /* Deixa a altura se ajustar ao conteúdo em telas menores */
-            }
-
-            .left-box, .login-box {
-                max-width: 100%;
-            }
-
             header {
                 flex-direction: column;
-                align-items: flex-start; /* Alinha itens à esquerda em telas pequenas */
+                align-items: flex-start;
                 gap: 10px;
             }
-            header nav { /* Permite que os links da navegação quebrem linha */
-                flex-wrap: wrap;
-                justify-content: center; /* Centraliza os links quando quebram */
+
+            nav {
+                justify-content: center;
             }
-            header nav a {
-                margin: 5px 10px; /* Ajusta a margem para links em nav responsivo */
+
+            .page-header h1 {
+                font-size: 38px;
+            }
+
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 20px 30px;
+            }
+
+            .welcome-card,
+            .login-card {
+                max-width: 100%;
             }
         }
-        
     </style>
 </head>
 <body>
 
 <header>
-    <div>Ritmo Enem</div>
+    <div class="logo">Ritmo Enem</div>
     <nav>
-        <a href="home.php">HOME</a>
-        <a href="cronograma.php">CRONOGRAMA</a> <a href="#">SOBRE NÓS</a>
+        <a href="home.php" class="active">HOME</a>
+        <a href="cronograma.php">CRONOGRAMA</a>
+        <a href="sobre.php">SOBRE NÓS</a>
         <a href="cadastro.php">CADASTRO</a>
         <a href="#">FÓRUM ONLINE</a>
     </nav>
 </header>
 
-<div class="container">
-    <div class="left-box">
-        <h1>Ritmo Enem</h1>
-        <p class="tagline">estudando para alcançar as estrelas</p>
-        <p class="desc">
-            O projeto Ritmo Enem visa facilitar a organização e o acompanhamento de atividades diárias durante a preparação para o ENEM.
-            Saiba que pode entrar em contato conosco pelas redes sociais!
-        </p>
-        <div class="socials">
-            <img src="instagram.png" alt="Instagram">
-            <span>@stars.__.tech</span>
-            <img src="twitter.png" alt="Twitter"> <span>@stars__tech</span>
-        </div>
+<main class="main-content">
+    <div class="welcome-panel">
+        <h1>Bem-vindo ao Ritmo Enem</h1>
+        <p>Organize seus estudos de forma prática e intuitiva. Acesse seu cronograma e prepare-se com foco para o ENEM.</p>
+        <p>Aqui, você encontra um ambiente leve e funcional para acompanhar seu progresso e manter a rotina de estudos alinhada com seus objetivos.</p>
     </div>
 
-    <div class="login-box">
+    <div class="login-card">
         <h2>LOGIN</h2>
         <form method="POST" action="">
             <input type="text" name="email" placeholder="ENDEREÇO ID" required>
             <input type="password" name="senha" placeholder="SENHA" required>
             <input type="submit" value="LOGIN">
         </form>
-        <a href="cadastro.php">Cadastrar-se</a>
+        <div class="link-row">
+            <a href="cadastro.php">Cadastrar-se</a>
+        </div>
     </div>
-</div>
+</main>
+
+<footer>
+    <p>Siga-nos: @ritmoEnem no Instagram e Twitter</p>
+</footer>
 
 </body>
 </html>
