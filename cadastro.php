@@ -327,7 +327,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="cronograma.php">CRONOGRAMA</a>
         <a href="sobre.php">SOBRE NÓS</a>
         <a href="cadastro.php" class="active">CADASTRO</a>
-        <a href="#">FÓRUM ONLINE</a>
+        
     </nav>
 </header>
 
