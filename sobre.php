@@ -169,7 +169,6 @@ $missao = "Nossa missão é tornar sua trajetória mais fácil e eficiente, com 
         <a href="cronograma.php">CRONOGRAMA</a>
         <a href="sobre.php" class="active">SOBRE NÓS</a>
         <a href="cadastro.php">CADASTRO</a>
-        <a href="#">FÓRUM ONLINE</a>
     </nav>
 </header>
 
