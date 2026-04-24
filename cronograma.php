@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once 'conexao.php';
 // Função para gerar o cronograma se o formulário for enviado
 $scheduleOutput = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -487,9 +489,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <a href="home.php">HOME</a>
         <a href="cronograma.php">CRONOGRAMA</a>
-        <a href="#">SOBRE NÓS</a>
+        <a href="sobre.php">SOBRE NÓS</a>
         <a href="cadastro.php">CADASTRO</a>
-        <a href="#">FÓRUM ONLINE</a>
     </nav>
 </header>
 <h1 class="main-page-title">Cronograma de Estudos</h1>
@@ -666,15 +667,20 @@ function reindexRadioNames() {
 // Lógica para os botões de seleção de dia (transforma checkboxes em botões clicáveis)
 document.addEventListener('DOMContentLoaded', function() {
     const dayButtonsContainer = document.getElementById('day-buttons');
+    
+    // Delega eventos ao container para lidar com cliques nos botões
     dayButtonsContainer.addEventListener('click', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do botão
+        
+        // Verifica se o elemento clicado é um botão de dia
         if (event.target.classList.contains('day-button')) {
             const button = event.target;
-            const dayId = button.dataset.dayId;
+            const dayId = button.getAttribute('data-day-id');
             const checkbox = document.getElementById(dayId);
 
             if (checkbox) {
                 checkbox.checked = !checkbox.checked; // Inverte o estado do checkbox oculto
-                button.classList.toggle('selected', checkbox.checked); // Adiciona/remove a classe 'selected' ao botão visível
+                button.classList.toggle('selected', checkbox.checked); // Adiciona/remove a classe 'selected'
             }
         }
     });
@@ -688,6 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    
     // Adiciona event listeners para os botões de remover matérias que já existem na página (se houver recarregamento com erro)
     document.querySelectorAll('.remove-subject').forEach(button => {
         button.addEventListener('click', function() {
