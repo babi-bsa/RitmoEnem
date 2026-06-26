@@ -1,0 +1,85 @@
+body{font-family:system-ui,sans-serif;max-width:960px;margin:24px auto;padding:0 16px}
+
+/* Table */
+table.schedule{width:100%;border-collapse:collapse;margin-top:16px;display:block;overflow:auto;-webkit-overflow-scrolling:touch}
+table.schedule th,table.schedule td{border:1px solid #ddd;padding:8px;text-align:center;vertical-align:top;white-space:nowrap}
+
+/* Difficulty colors */
+.difficulty-easy{background:#e6f7e6}
+.difficulty-medium{background:#fff4d6}
+.difficulty-difficult{background:#fde0e0}
+.empty{color:#bbb}
+
+.error{color:#b00020;background:#fde7ea;padding:8px;border-radius:6px}
+.week-msg{font-style:italic;color:#444}
+
+fieldset{margin:12px 0;padding:12px}
+label{display:inline-block;margin:4px 8px 4px 0}
+
+.schedule-cell{
+  min-width:140px;
+  min-height:60px;
+  cursor:move;
+  transition:.2s;
+}
+.schedule-cell:focus{
+  outline:2px solid #0097b2;
+  background:#fff;
+}
+.dragging{opacity:.5}
+.drag-over{border:2px dashed #133e87 !important}
+
+/* Inputs full-width on small screens */
+input,select,textarea{font:inherit}
+
+@media (max-width:800px){
+  fieldset{padding:10px}
+  label{display:block;width:100%;margin:6px 0}
+  input[type="number"],input[type="time"],input[type="text"],select,textarea,input[name="nome"]{width:100%;box-sizing:border-box}
+  .schedule-cell{min-width:120px;min-height:52px}
+}
+
+@media (max-width:480px){
+  body{margin:12px auto;padding:0 10px}
+  .schedule-cell{min-width:100px;min-height:48px;font-size:14px}
+  h1{font-size:1.2rem}
+  table.schedule th,table.schedule td{padding:6px}
+}
+
+/* Improve focus on editable cells for touch */
+.schedule-cell[contenteditable]:focus{outline-offset:2px}
+
+/* Remove button inside schedule cells */
+.schedule-cell{position:relative}
+.cell-remove{
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:none;
+  background: linear-gradient(135deg,#ff6b6b,#ff4757);
+  color:#fff;
+  display:flex; /* always present in layout, control visibility via opacity */
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-weight:700;
+  font-size:18px;
+  line-height:1;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease, visibility .12s ease;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.schedule-cell:hover .cell-remove{opacity:1; visibility:visible; pointer-events:auto; transform:none}
+.cell-remove:hover{transform:scale(1.08); box-shadow:0 10px 20px rgba(0,0,0,0.18)}
+.cell-remove:focus{outline:2px solid rgba(255,255,255,0.22)}
+
+/* Always show on small screens for easier touch */
+@media (max-width:480px){
+  .cell-remove{opacity:1; visibility:visible; pointer-events:auto}
+}
+
